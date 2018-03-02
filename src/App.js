@@ -36,21 +36,17 @@ class App extends Component {
     let categoryRender = null;
 
     if(tempCategories !== undefined){
-      tempCategories  = Object.values(this.state.categories); //This converts the object of objects into and array
-      //but probably don't do that, do this instead? https://teamtreehouse.com/community/looping-through-objects-in-javascript
-      console.log("firing!!!"+tempCategories);
-
-      categoryRender =
-        tempCategories.map((category) => {
-          return <Category key={category.name} category={category} />
-        });
+      let temp = this.state.categories;
+      categoryRender=[];
+      Object.keys(temp).forEach((key) => {
+        console.log(key, temp[key]);
+        categoryRender.push(<Category key={key} name={key} category={temp[key]} />);
+      });
     }
 
     return (
       <div className="app">
-        <div className="category">
-          {categoryRender}
-        </div>
+        {categoryRender}
       </div>
     );
   }
