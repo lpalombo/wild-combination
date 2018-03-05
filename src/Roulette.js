@@ -8,7 +8,7 @@ class Roulette extends Component {
     return (
       <div className="roulette">
         {this.props.selectedCards.map((card) => {
-          return <Card key={card.id} card={card} />
+          return <Card clickHandler={this.props.clickHandler} key={card.id} card={card} />
         })}
       </div>
     );

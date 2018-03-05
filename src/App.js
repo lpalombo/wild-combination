@@ -11,10 +11,12 @@ class App extends Component {
     super(props);
     this.state = {
       categories: {},
-      selectedCards:[]
+      selectedCards:[],
+      clickedCard:{}
     };
 
     this.handleClick = this.handleClick.bind(this);
+    this.cardClick = this.cardClick.bind(this);
   }
 
   componentWillMount(){
@@ -52,7 +54,26 @@ class App extends Component {
   }
 
   handleClick(e){
+    console.log("sup");
     this.selectCards();
+  }
+
+  cardClick(e){
+    let temp = this.state.categories;
+    let tempCards = this.state.selectedCards.map((card, index) => {
+      if(card === e){
+        return this.randomCard(Object.values(this.state.categories)[index]);
+      } else {
+        return this.state.selectedCards[index];
+      }
+    });
+
+    console.log(tempCards);
+
+    this.setState({
+      clickedCard:e,
+      selectedCards: tempCards
+    });
   }
 
 
@@ -60,8 +81,9 @@ class App extends Component {
 
     return (
       <div className="app">
-        <Roulette selectedCards={this.state.selectedCards} />
+        <Roulette clickHandler={this.cardClick} selectedCards={this.state.selectedCards} />
         <button onClick={this.handleClick}>Test</button>
+        <button onClick={this.cardClick}>Sup</button>
       </div>
     );
   }
