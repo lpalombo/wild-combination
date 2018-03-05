@@ -19,21 +19,15 @@ class RouletteBox extends Component {
     this.selectCard = this.selectCard.bind(this);
   }
 
-  selectCard(e){
-    let catLength = this.props.category.length;
-    let selectedIndex = Math.floor(Math.random() * catLength);
-    let selectedObject = this.props.category[selectedIndex];
 
-    this.setState({
-      selectedCard: this.props.category[selectedIndex]
-    });
-  }
 
   componentDidMount(){
     this.selectCard();
   }
 
-
+  handleClick(e){
+    selectCard();
+  }
 
   render() {
 
