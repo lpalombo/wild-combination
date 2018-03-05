@@ -10,8 +10,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categories: {}
+      categories: {},
+      selectedCards:[]
     };
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentWillMount(){
@@ -25,16 +28,40 @@ class App extends Component {
           categories: decks[deck].data
         });
       }
-
     });
   }
 
-  render() {
+  randomCard(category){
+    let catLength = category.length;
+    let selectedIndex = Math.floor(Math.random() * catLength);
+    let selectedObject = category[selectedIndex];
+    return category[selectedIndex];
+  }
 
+  selectCards(){
+    let temp = this.state.categories;
+    let tempCards=[];
+    Object.keys(temp).forEach((key) => {
+      //categoryRender.push(<Category key={key} name={key} category={temp[key]} />);
+      let selectedCard = this.randomCard(temp[key]);
+      tempCards.push(selectedCard);
+    });
+    this.setState({
+      selectedCards:tempCards
+    });
+  }
+
+  handleClick(e){
+    this.selectCards();
+  }
+
+
+  render() {
 
     return (
       <div className="app">
-        <Roulette categories={this.state.categories} />
+        <Roulette selectedCards={this.state.selectedCards} />
+        <button onClick={this.handleClick}>Test</button>
       </div>
     );
   }
