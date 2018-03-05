@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './App.css';
 import Category from './Category';
-import RouletteBox from './RouletteBox';
+import Roulette from './Roulette';
 //import GetSheetDone from 'get-sheet-done';
 import firebase from './firebase.js';
 
@@ -10,8 +10,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      categories: {},
+      selectedCards:[],
+      clickedCard:{}
     };
+
+    this.handleClick = this.handleClick.bind(this);
+    this.cardClick = this.cardClick.bind(this);
   }
 
   componentWillMount(){
@@ -25,28 +30,60 @@ class App extends Component {
           categories: decks[deck].data
         });
       }
-
-      //this.setState(snapshot.val());
     });
   }
 
-  render() {
-    let tempCategories  = this.state.categories;
-    let categoryRender = null;
+  randomCard(category){
+    let catLength = category.length;
+    let selectedIndex = Math.floor(Math.random() * catLength);
+    let selectedObject = category[selectedIndex];
+    return category[selectedIndex];
+  }
 
-    if(tempCategories !== undefined){
-      let temp = this.state.categories;
-      categoryRender=[];
-      Object.keys(temp).forEach((key) => {
-        console.log(key, temp[key]);
-        categoryRender.push(<Category key={key} name={key} category={temp[key]} />);
-      });
-      categoryRender.push(<RouletteBox name="technology" category={this.state.categories.technology} />);
-    }
+  selectCards(){
+    let temp = this.state.categories;
+    let tempCards=[];
+    Object.keys(temp).forEach((key) => {
+      //categoryRender.push(<Category key={key} name={key} category={temp[key]} />);
+      let selectedCard = this.randomCard(temp[key]);
+      tempCards.push(selectedCard);
+    });
+    this.setState({
+      selectedCards:tempCards
+    });
+  }
+
+  handleClick(e){
+    console.log("sup");
+    this.selectCards();
+  }
+
+  cardClick(e){
+    let temp = this.state.categories;
+    let tempCards = this.state.selectedCards.map((card, index) => {
+      if(card === e){
+        return this.randomCard(Object.values(this.state.categories)[index]);
+      } else {
+        return this.state.selectedCards[index];
+      }
+    });
+
+    console.log(tempCards);
+
+    this.setState({
+      clickedCard:e,
+      selectedCards: tempCards
+    });
+  }
+
+
+  render() {
 
     return (
       <div className="app">
-        {categoryRender}
+        <Roulette clickHandler={this.cardClick} selectedCards={this.state.selectedCards} />
+        <button onClick={this.handleClick}>Test</button>
+        <button onClick={this.cardClick}>Sup</button>
       </div>
     );
   }

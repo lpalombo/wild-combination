@@ -3,10 +3,12 @@ import './Card.css';
 
 class Card extends Component {
 
+  handleClick = () => { this.props.clickHandler(this.props.card)};
+
   render() {
 
     return (
-      <div className="card">
+      <button onClick={this.handleClick} className="card">
         <p className="name">{this.props.card.name}</p>
         <p className="description">{this.props.card.description}</p>
         {this.props.card.examples !== "" &&
@@ -15,7 +17,7 @@ class Card extends Component {
         {this.props.card.source !== "" &&
           <p className="source">Source: {this.props.card.source}</p>
         }
-      </div>
+      </button>
     );
   }
 }
