@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import './App.css';
 import Category from './Category';
+import RouletteBox from './RouletteBox';
 //import GetSheetDone from 'get-sheet-done';
 import firebase from './firebase.js';
 
@@ -13,7 +14,7 @@ class App extends Component {
     };
   }
 
-  componentDidMount(){
+  componentWillMount(){
     /* Create reference to messages in Firebase Database */
     let deckRef = firebase.database().ref('masterSheet');
     deckRef.on('value', (snapshot) => {
@@ -30,8 +31,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state);
-
     let tempCategories  = this.state.categories;
     let categoryRender = null;
 
@@ -42,6 +41,7 @@ class App extends Component {
         console.log(key, temp[key]);
         categoryRender.push(<Category key={key} name={key} category={temp[key]} />);
       });
+      categoryRender.push(<RouletteBox name="technology" category={this.state.categories.technology} />);
     }
 
     return (

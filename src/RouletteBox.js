@@ -2,19 +2,48 @@ import React, { Component } from 'react';
 import './Category.css';
 import Card from './Card';
 
-class Category extends Component {
+class RouletteBox extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedCard: {
+        category: "",
+        description:"",
+        examples:"",
+        id:"",
+        name:"",
+        source:""
+      }
+    };
+
+    this.selectCard = this.selectCard.bind(this);
+  }
+
+  selectCard(e){
+    let catLength = this.props.category.length;
+    let selectedIndex = Math.floor(Math.random() * catLength);
+    let selectedObject = this.props.category[selectedIndex];
+
+    this.setState({
+      selectedCard: this.props.category[selectedIndex]
+    });
+  }
+
+  componentDidMount(){
+    this.selectCard();
+  }
+
+
 
   render() {
 
     return (
-      <div className="rouletteBox">
-        <h1>{this.props.name}</h1>
-        {this.props.category.map((card) => {
-          return <Card key={card.id}card={card} />
-        })}
+      <div className="rouletteBox" onClick={this.selectCard}>
+        <p>This is a {this.props.name} roulette box</p>
+        <Card key={this.state.selectedCard.id}card={this.state.selectedCard} />
       </div>
     );
   }
 }
 
-export default Category;
+export default RouletteBox;
