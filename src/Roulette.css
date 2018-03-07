@@ -1,0 +1,12 @@
+.roulette{
+  display:flex;
+  min-height: 100px;
+  width: 100%;
+}
+.roulette-child{
+  display: flex;
+  flex-direction: column;
+  width: calc(33% - 20px);
+  margin-top: 10px;
+  margin-right: 20px;
+}

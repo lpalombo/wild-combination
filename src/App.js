@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Category from './Category';
 import Roulette from './Roulette';
+import SubmissionField from './SubmissionField';
 //import GetSheetDone from 'get-sheet-done';
 import firebase from './firebase.js';
 
@@ -12,14 +13,16 @@ class App extends Component {
     this.state = {
       categories: {},
       selectedCards:[],
-      clickedCard:{}
+      clickedCard:{},
+      submissions: []
     };
 
     this.handleClick = this.handleClick.bind(this);
     this.cardClick = this.cardClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillMount(){
+  componentDidMount(){
     /* Create reference to messages in Firebase Database */
     let deckRef = firebase.database().ref('masterSheet');
     deckRef.on('value', (snapshot) => {
@@ -30,6 +33,15 @@ class App extends Component {
           categories: decks[deck].data
         });
       }
+    });
+
+    deckRef = firebase.database().ref('submissions');
+    deckRef.on('value', (snapshot) => {
+      let data = Object.values(snapshot.val());
+
+      this.setState({
+        submissions: data
+      });
     });
   }
 
@@ -54,7 +66,6 @@ class App extends Component {
   }
 
   handleClick(e){
-    console.log("sup");
     this.selectCards();
   }
 
@@ -76,14 +87,36 @@ class App extends Component {
     });
   }
 
+  handleSubmit(value){
+    console.log(value);
+    let d = new Date();
+    firebase.database().ref('submissions/'+ d.getTime()).set({
+      value: value,
+      selectedCards: this.state.selectedCards
+    });
+
+  }
 
   render() {
-
     return (
       <div className="app">
         <Roulette clickHandler={this.cardClick} selectedCards={this.state.selectedCards} />
-        <button onClick={this.handleClick}>Test</button>
-        <button onClick={this.cardClick}>Sup</button>
+        <button className="roulette-button" onClick={this.handleClick}>Randomise Cards</button>
+        <SubmissionField submitHandler={this.handleSubmit}/>
+        <div className="submissions">
+          {this.state.submissions.map((submission) => {
+            return ([
+              <div className="submission">
+                <div className="selected-cards">
+                  {submission.selectedCards.map((card) => {
+                    return <span>{card.name}</span>
+                  })}
+                </div>
+                <p>{submission.value}</p>
+              </div>
+            ])
+          })}
+        </div>
       </div>
     );
   }
