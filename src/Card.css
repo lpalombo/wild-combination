@@ -16,6 +16,17 @@
   margin: 8px 0;
 }
 
+.card .cat{
+  font-weight: normal;
+  width:100%;
+  font-size: 12px;
+  align-self: flex-start;
+}
+
+.card .cat>span{
+  
+}
+
 .card.user{
   font-weight: bold;
   background-color: white;
