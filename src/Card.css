@@ -24,7 +24,7 @@
 }
 
 .card .cat>span{
-  
+
 }
 
 .card.user{
@@ -38,7 +38,7 @@
 .card.scenario{
   font-weight: bold;
   background-color: white;
-  border: 2px dashed #77c36c;
+  border: 2px dotted #77c36c;
   color: #77c36c;
   font-size: 1.5em;
 }

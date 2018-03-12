@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import './App.css';
-import Category from './Category';
 import Roulette from './Roulette';
 import SubmissionField from './SubmissionField';
 //import GetSheetDone from 'get-sheet-done';
@@ -48,7 +47,6 @@ class App extends Component {
   randomCard(category){
     let catLength = category.length;
     let selectedIndex = Math.floor(Math.random() * catLength);
-    let selectedObject = category[selectedIndex];
     return category[selectedIndex];
   }
 
@@ -70,7 +68,6 @@ class App extends Component {
   }
 
   cardClick(e){
-    let temp = this.state.categories;
     let tempCards = this.state.selectedCards.map((card, index) => {
       if(card === e){
         return this.randomCard(Object.values(this.state.categories)[index]);
@@ -104,7 +101,7 @@ class App extends Component {
         <button className="roulette-button" onClick={this.handleClick}>Randomise Cards</button>
         <SubmissionField submitHandler={this.handleSubmit}/>
         <div className="submissions">
-          {this.state.submissions.map((submission) => {
+          {this.state.submissions.slice(0).reverse().map((submission) => {
             return ([
               <div className="submission">
                 <div className="selected-cards">
