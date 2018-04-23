@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Link,
+  NavLink
 } from 'react-router-dom'
 
 import './App.css';
@@ -67,13 +68,14 @@ class App extends Component {
     return (
       <Router>
         <div className="app">
-          <div className="nav">
+          <nav className="nav">
             <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/play">Play the game</Link></li>
-              <li><Link to="/about">About</Link></li>
+              <li className="homeButton"><Link to="/">Wild Combination</Link></li>
+              <li><NavLink to="/play" activeClassName="current">Play the game</NavLink></li>
+              <li><NavLink to="/workshop" activeClassName="current">Run a Workshop</NavLink></li>
+              <li><NavLink to="/about" activeClassName="current">About</NavLink></li>
             </ul>
-          </div>
+          </nav>
           <div className="routes">
             <Route exact path="/" render={(props) => <Home submissions={this.state.submissions}/>}/>
             <Route path="/play" render={(props) => <Game {...this.state} selectedHandler={this.handleSelectedCards} submitHandler={this.handleSubmit}/>}/>
