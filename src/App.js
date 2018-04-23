@@ -1,24 +1,29 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  NavLink
+} from 'react-router-dom'
 
 import './App.css';
-import Roulette from './Roulette';
-import SubmissionField from './SubmissionField';
 //import GetSheetDone from 'get-sheet-done';
 import firebase from './firebase.js';
+import Home from './Home';
+import Game from './Game';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       categories: {},
-      selectedCards:[],
+      selectedCards:[{},{},{}],
       clickedCard:{},
       submissions: []
     };
 
-    this.handleClick = this.handleClick.bind(this);
-    this.cardClick = this.cardClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSelectedCards = this.handleSelectedCards.bind(this);
   }
 
   componentDidMount(){
@@ -44,44 +49,9 @@ class App extends Component {
     });
   }
 
-  randomCard(category){
-    let catLength = category.length;
-    let selectedIndex = Math.floor(Math.random() * catLength);
-    return category[selectedIndex];
-  }
-
-  selectCards(){
-    let temp = this.state.categories;
-    let tempCards=[];
-    Object.keys(temp).forEach((key) => {
-      //categoryRender.push(<Category key={key} name={key} category={temp[key]} />);
-      let selectedCard = this.randomCard(temp[key]);
-      tempCards.push(selectedCard);
-    });
-    this.setState({
-      selectedCards:tempCards
-    });
-  }
-
-  handleClick(e){
-    this.selectCards();
-  }
-
-  cardClick(e){
-    let tempCards = this.state.selectedCards.map((card, index) => {
-      if(card === e){
-        return this.randomCard(Object.values(this.state.categories)[index]);
-      } else {
-        return this.state.selectedCards[index];
-      }
-    });
-
-    console.log(tempCards);
-
-    this.setState({
-      clickedCard:e,
-      selectedCards: tempCards
-    });
+  handleSelectedCards(value){
+    console.log(value);
+    this.setState(value);
   }
 
   handleSubmit(value){
@@ -96,25 +66,23 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app">
-        <Roulette clickHandler={this.cardClick} selectedCards={this.state.selectedCards} />
-        <button className="roulette-button" onClick={this.handleClick}>Randomise Cards</button>
-        <SubmissionField submitHandler={this.handleSubmit}/>
-        <div className="submissions">
-          {this.state.submissions.slice(0).reverse().map((submission) => {
-            return ([
-              <div className="submission">
-                <div className="selected-cards">
-                  {submission.selectedCards.map((card) => {
-                    return <span>{card.name}</span>
-                  })}
-                </div>
-                <p>{submission.value}</p>
-              </div>
-            ])
-          })}
+      <Router>
+        <div className="app">
+          <nav className="nav">
+            <ul>
+              <li className="homeButton"><Link to="/">Wild Combination</Link></li>
+              <li><NavLink to="/play" activeClassName="current">Play the game</NavLink></li>
+              <li><NavLink to="/workshop" activeClassName="current">Run a Workshop</NavLink></li>
+              <li><NavLink to="/about" activeClassName="current">About</NavLink></li>
+            </ul>
+          </nav>
+          <div className="routes">
+            <Route exact path="/" render={(props) => <Home submissions={this.state.submissions}/>}/>
+            <Route path="/play" render={(props) => <Game {...this.state} selectedHandler={this.handleSelectedCards} submitHandler={this.handleSubmit}/>}/>
+          </div>
+
         </div>
-      </div>
+      </Router>
     );
   }
 }

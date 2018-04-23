@@ -4,10 +4,14 @@ import './Card.css';
 class Card extends Component {
 
   formatCat(str){
-    return str.split("-")[1];
+    if(str){
+      return str.split("-")[1];
+    }
   }
   formatTitle(str){
-    return str.split("-")[1].replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    if(str){
+      return str.split("-")[1].replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    }
   }
 
   handleClick = () => { this.props.clickHandler(this.props.card)};
