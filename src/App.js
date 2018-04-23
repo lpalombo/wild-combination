@@ -1,10 +1,27 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 
 import './App.css';
 import Roulette from './Roulette';
 import SubmissionField from './SubmissionField';
 //import GetSheetDone from 'get-sheet-done';
 import firebase from './firebase.js';
+
+const Test1 = () => (
+  <div>
+    <h2>Test1</h2>
+  </div>
+)
+
+const Test2 = () => (
+  <div>
+    <h2>Test2</h2>
+  </div>
+)
 
 class App extends Component {
   constructor(props) {
@@ -96,25 +113,37 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app">
-        <Roulette clickHandler={this.cardClick} selectedCards={this.state.selectedCards} />
-        <button className="roulette-button" onClick={this.handleClick}>Randomise Cards</button>
-        <SubmissionField submitHandler={this.handleSubmit}/>
-        <div className="submissions">
-          {this.state.submissions.slice(0).reverse().map((submission) => {
-            return ([
-              <div className="submission">
-                <div className="selected-cards">
-                  {submission.selectedCards.map((card) => {
-                    return <span>{card.name}</span>
-                  })}
+      <Router>
+        <div className="app">
+          <div className="nav">
+            <ul>
+              <li><Link to="/test1">Test 1</Link></li>
+              <li><Link to="/test2">Test 2</Link></li>
+            </ul>
+          </div>
+          <div className="routes">
+            <Route path="/test1" component={Test1}/>
+            <Route path="/test2" render={(props) => <Roulette clickHandler={this.cardClick} selectedCards={this.state.selectedCards} />}/>
+          </div>
+
+          <button className="roulette-button" onClick={this.handleClick}>Randomise Cards</button>
+          <SubmissionField submitHandler={this.handleSubmit}/>
+          <div className="submissions">
+            {this.state.submissions.slice(0).reverse().map((submission) => {
+              return ([
+                <div className="submission">
+                  <div className="selected-cards">
+                    {submission.selectedCards.map((card) => {
+                      return <span>{card.name}</span>
+                    })}
+                  </div>
+                  <p>{submission.value}</p>
                 </div>
-                <p>{submission.value}</p>
-              </div>
-            ])
-          })}
+              ])
+            })}
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }
