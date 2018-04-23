@@ -6,22 +6,10 @@ import {
 } from 'react-router-dom'
 
 import './App.css';
-import Roulette from './Roulette';
-import SubmissionField from './SubmissionField';
 //import GetSheetDone from 'get-sheet-done';
 import firebase from './firebase.js';
-
-const Test1 = () => (
-  <div>
-    <h2>Test1</h2>
-  </div>
-)
-
-const Test2 = () => (
-  <div>
-    <h2>Test2</h2>
-  </div>
-)
+import Home from './Home';
+import Game from './Game';
 
 class App extends Component {
   constructor(props) {
@@ -33,9 +21,8 @@ class App extends Component {
       submissions: []
     };
 
-    this.handleClick = this.handleClick.bind(this);
-    this.cardClick = this.cardClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSelectedCards = this.handleSelectedCards.bind(this);
   }
 
   componentDidMount(){
@@ -61,44 +48,9 @@ class App extends Component {
     });
   }
 
-  randomCard(category){
-    let catLength = category.length;
-    let selectedIndex = Math.floor(Math.random() * catLength);
-    return category[selectedIndex];
-  }
-
-  selectCards(){
-    let temp = this.state.categories;
-    let tempCards=[];
-    Object.keys(temp).forEach((key) => {
-      //categoryRender.push(<Category key={key} name={key} category={temp[key]} />);
-      let selectedCard = this.randomCard(temp[key]);
-      tempCards.push(selectedCard);
-    });
-    this.setState({
-      selectedCards:tempCards
-    });
-  }
-
-  handleClick(e){
-    this.selectCards();
-  }
-
-  cardClick(e){
-    let tempCards = this.state.selectedCards.map((card, index) => {
-      if(card === e){
-        return this.randomCard(Object.values(this.state.categories)[index]);
-      } else {
-        return this.state.selectedCards[index];
-      }
-    });
-
-    console.log(tempCards);
-
-    this.setState({
-      clickedCard:e,
-      selectedCards: tempCards
-    });
+  handleSelectedCards(value){
+    console.log(value);
+    this.setState(value);
   }
 
   handleSubmit(value){
@@ -117,31 +69,16 @@ class App extends Component {
         <div className="app">
           <div className="nav">
             <ul>
-              <li><Link to="/test1">Test 1</Link></li>
-              <li><Link to="/test2">Test 2</Link></li>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/play">Play the game</Link></li>
+              <li><Link to="/about">About</Link></li>
             </ul>
           </div>
           <div className="routes">
-            <Route path="/test1" component={Test1}/>
-            <Route path="/test2" render={(props) => <Roulette clickHandler={this.cardClick} selectedCards={this.state.selectedCards} />}/>
+            <Route exact path="/" render={(props) => <Home submissions={this.state.submissions}/>}/>
+            <Route path="/play" render={(props) => <Game {...this.state} selectedHandler={this.handleSelectedCards} submitHandler={this.handleSubmit}/>}/>
           </div>
 
-          <button className="roulette-button" onClick={this.handleClick}>Randomise Cards</button>
-          <SubmissionField submitHandler={this.handleSubmit}/>
-          <div className="submissions">
-            {this.state.submissions.slice(0).reverse().map((submission) => {
-              return ([
-                <div className="submission">
-                  <div className="selected-cards">
-                    {submission.selectedCards.map((card) => {
-                      return <span>{card.name}</span>
-                    })}
-                  </div>
-                  <p>{submission.value}</p>
-                </div>
-              ])
-            })}
-          </div>
         </div>
       </Router>
     );
