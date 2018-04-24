@@ -9,7 +9,8 @@ class Home extends Component {
     this.state = {
       submissions: [],
       count: 5,
-      increment: 5
+      increment: 5,
+      hasMore: true
     }
     this.refresh = this.refresh.bind(this);
     this.incrementCount = this.incrementCount.bind(this);
@@ -52,7 +53,7 @@ class Home extends Component {
           <InfiniteScroll
             dataLength={this.state.submissions.length}
             next={this.incrementCount}
-            hasMore={true}
+            hasMore={(this.state.count <= this.state.submissions.length)}
             loader={<h4>Loading...</h4>}
             refreshFunction={this.refresh}
             endMessage={
@@ -60,9 +61,9 @@ class Home extends Component {
                 <b>Yay! You have seen it all</b>
               </p>
             }>
-              {this.state.submissions.slice(0).reverse().map((submission) => {
+              {this.state.submissions.slice(0).reverse().map((post) => {
                 return (
-                  <Post submission={submission}/>
+                  <Post key={post.id} submission={post}/>
                 )
               })}
           </InfiniteScroll>

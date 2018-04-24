@@ -49,7 +49,9 @@ class App extends Component {
   handleSubmit(value){
     console.log(value);
     let d = new Date();
-    firebase.database().ref('submissions/'+ d.getTime()).set({
+    let time = d.getTime();
+    firebase.database().ref('submissions/'+ time).set({
+      id: time,
       value: value,
       selectedCards: this.state.selectedCards
     });
