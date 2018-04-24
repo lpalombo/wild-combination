@@ -81,3 +81,19 @@ button{
   display: block;
   margin: 10px 0;
 }
+
+
+/* HEADER */
+
+header{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -80px;
+}
+
+header > div{
+  width: 450px;
+  text-align: center;
+}
