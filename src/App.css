@@ -15,11 +15,12 @@ ul{
 
 nav{
   margin-bottom: 40px;
+  margin: 100 0px;
 }
 nav ul{
   padding-top: 40px;
   display: flex;
-  max-width: 1600px;
+  max-width: 1275px;
   margin: 0 auto;
 }
 nav ul li a{
@@ -44,7 +45,7 @@ nav ul .homeButton{
 
 .submissions{
   margin: 50px auto;
-  width: 1200px;
+  max-width: 1200px;
 }
 
 button{
@@ -67,10 +68,10 @@ header{
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: -80px;
+  margin-top: -80px;
 }
 
 header > div{
-  width: 450px;
+  max-width: 450px;
   text-align: center;
 }

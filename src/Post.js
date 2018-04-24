@@ -8,7 +8,12 @@ class Post extends Component {
       <div className="post">
         <div className="selected-cards">
           {this.props.submission.selectedCards.map((card) => {
-            return <div key={card.id} className="postCard">{card.name}</div>
+            return (
+              <div key={card.id} className={"postCard a"+card.category}>
+                <span className="postSpan" >{card.category}</span>
+                {card.name}
+              </div>
+            )
           })}
         </div>
         <div className="inputted">
