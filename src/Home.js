@@ -1,8 +1,43 @@
 import React, { Component } from 'react';
 import Post from './Post';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import firebase from './firebase.js';
 
 class Home extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      submissions: [],
+      count: 5,
+      increment: 5
+    }
+    this.refresh = this.refresh.bind(this);
+    this.incrementCount = this.incrementCount.bind(this);
+  }
 
+  componentDidMount(){
+    this.refresh();
+  }
+
+  refresh(){
+    let deckRef = firebase.database().ref('submissions').limitToLast(this.state.count);
+    deckRef.on('value', (snapshot) => {
+      let data = Object.values(snapshot.val());
+      console.log(data,this.state.count);
+      this.setState({
+        submissions: data
+      });
+    });
+  }
+
+  incrementCount(){
+    console.log("firing!");
+    let newCount = this.state.count + this.state.increment;
+    this.setState({
+      count: newCount
+    })
+    this.refresh();
+  }
 
   render() {
     return (
@@ -14,11 +49,23 @@ class Home extends Component {
           </div>
         </header>
         <div className="submissions">
-          {this.props.submissions.slice(0).reverse().map((submission) => {
-            return ([
-              <Post key={Object.keys(submission)} submission={submission}/>
-            ])
-          })}
+          <InfiniteScroll
+            dataLength={this.state.submissions.length}
+            next={this.incrementCount}
+            hasMore={true}
+            loader={<h4>Loading...</h4>}
+            refreshFunction={this.refresh}
+            endMessage={
+              <p style={{textAlign: 'center'}}>
+                <b>Yay! You have seen it all</b>
+              </p>
+            }>
+              {this.state.submissions.slice(0).reverse().map((submission) => {
+                return (
+                  <Post submission={submission}/>
+                )
+              })}
+          </InfiniteScroll>
         </div>
       </div>
     );

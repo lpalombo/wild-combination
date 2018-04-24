@@ -19,7 +19,6 @@ class App extends Component {
       categories: {},
       selectedCards:[{},{},{}],
       clickedCard:{},
-      submissions: []
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,14 +38,7 @@ class App extends Component {
       }
     });
 
-    deckRef = firebase.database().ref('submissions');
-    deckRef.on('value', (snapshot) => {
-      let data = Object.values(snapshot.val());
 
-      this.setState({
-        submissions: data
-      });
-    });
   }
 
   handleSelectedCards(value){
@@ -77,7 +69,7 @@ class App extends Component {
             </ul>
           </nav>
           <div className="routes">
-            <Route exact path="/" render={(props) => <Home submissions={this.state.submissions}/>}/>
+            <Route exact path="/" render={(props) => <Home {...this.state}/>}/>
             <Route path="/play" render={(props) => <Game {...this.state} selectedHandler={this.handleSelectedCards} submitHandler={this.handleSubmit}/>}/>
           </div>
 
