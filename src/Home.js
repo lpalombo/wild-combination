@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Post from './Post';
 
 class Home extends Component {
 
@@ -16,14 +16,7 @@ class Home extends Component {
         <div className="submissions">
           {this.props.submissions.slice(0).reverse().map((submission) => {
             return ([
-              <div className="submission">
-                <div className="selected-cards">
-                  {submission.selectedCards.map((card) => {
-                    return <span>{card.name}</span>
-                  })}
-                </div>
-                <p>{submission.value}</p>
-              </div>
+              <Post key={Object.keys(submission)} submission={submission}/>
             ])
           })}
         </div>

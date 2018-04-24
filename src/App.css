@@ -44,23 +44,7 @@ nav ul .homeButton{
 
 .submissions{
   margin: 50px auto;
-  border: 1px solid;
-  box-sizing: border-box;
-  width: 800px;
-}
-
-.submission{
-  padding: 20px 10px;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-.submission p{
-  margin-bottom: 0px;
-}
-
-.submission:nth-child(even) {
-  background-color: rgba(0,0,0,0.05);
+  width: 1200px;
 }
 
 button{
@@ -68,13 +52,6 @@ button{
   padding: 10px;
   border: 1px solid;
   font-size: 1.1em;
-}
-
-.selected-cards{
-  border: 1px solid grey;
-  background-color: white;
-  padding: 0 5px;
-  font-size: .8em;
 }
 
 .selected-cards span{
