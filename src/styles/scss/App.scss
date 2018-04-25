@@ -1,17 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Mono');
 
 $fonts-body: Helvetica, sans-serif;
-$fonts-links: 'PT Mono', monospace;
+$fonts-buttons: 'PT Mono', monospace;
 
-$nav-color: #0060ff;
-$bg-color: lightgray;
-$button-color: #ff524d;
+$nav-color: white;
+$bg-color: #0060ff;
+$color-button: #ff524d;
+$color-highlight: #ebff61;
+$text-body-color: white;
+$text-card-color: black;
+
+
+$max-width: 1200px;
+$side-padding: 0 50px;
+$margin-top: 30px 0;
 
 body {
   margin: 0;
   padding: 0;
   font-family: $fonts-body;
   background-color: $bg-color;
+  color: $text-body-color;
 }
 
 p{
@@ -25,43 +34,76 @@ ul{
 }
 
 button{
-  font-family: $fonts-links;
-  margin: 10px 0;
-  padding: 10px;
-  border: 1px solid;
-  font-size: 1.1em;
+  &:hover{cursor: pointer;}
+  &.ctaButton{
+    font-family: $fonts-buttons;
+    background-color: $color-button;
+    font-weight: bold;
+    border: 0;
+    color: white;
+    font-size: 15px;
+    padding: 15px;
+    &:disabled{
+      background-color: transparentize(white, 0.7);
+      color: transparentize(white, 0.5);
+      cursor: default;
+    }
+  }
+  &.interfaceButton{
+    transition: opacity .1s;
+    background-color: transparent;
+    color: $text-body-color;
+    font-family: $fonts-buttons;
+    border: 0;
+    font-size: 14px;
+    margin: 0 10px;
+    &:hover{opacity:0.6;}
+    &:disabled{
+      opacity: 0.5;
+      cursor: default;
+    }
+  }
 }
 
-button.ctaButton{
-  background-color: $button-color;
-  font-weight: bold;
-  border: 0;
-  color: white;
-  font-size: 15px;
-  padding: 15px;
+.interfaceContainer{
+  width: 100%;
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  &.right{
+    justify-content: flex-end;
+  }
+  &.noMargin{
+    margin:0;
+  }
+}
+.textContainer{
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 nav{
   margin-bottom: 40px;
   margin: 100 0px;
-
   ul{
-    box-sizing: border-box;
+    padding: $side-padding;
     padding-top: 40px;
-    padding-left: 50px;
-    padding-right: 50px;
     display: flex;
-    max-width: 1275px;
+    max-width: $max-width;
     margin: 0 auto;
+  }
+  ul li{
+    margin: 0 10px;
+    &:first-child{margin-left: 0;}
+    &:last-child{margin-right: 0;}
   }
   ul li a{
     text-decoration: none;
     padding-bottom: 5px;
-    margin: 0 10px;
     color: $nav-color;
     font-size: 14px;
   }
-
   ul li a.current{
     border-bottom: 1px solid;
   }
@@ -76,8 +118,8 @@ nav ul .homeButton{
 }
 
 .submissions{
-  margin: 50px auto;
-  max-width: 1200px;
+  max-width: $max-width;
+  margin: 0 auto;
 }
 
 
@@ -101,4 +143,37 @@ header{
 header > div{
   max-width: 450px;
   text-align: center;
+}
+
+/* GAME */
+
+.game{
+  max-width: $max-width;
+  padding: $side-padding;
+  margin: 0 auto;
+  perspective: 800px;
+
+  .flow{
+    max-width: 740px;
+    margin: 0 auto;
+    ul{
+      display: flex;
+      button{
+        flex-grow: 1;
+
+        span{
+          color: $bg-color;
+          box-sizing: border-box;
+          width: 30px;
+          font-size: 16px;
+          border-radius: 20px;
+          padding: 8px;
+          background-color: $color-highlight;
+
+        }
+      }
+    }
+  }
+
+
 }

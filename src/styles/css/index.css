@@ -3,7 +3,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: Helvetica, sans-serif;
-  background-color: lightgray; }
+  background-color: #0060ff;
+  color: white; }
 
 p {
   line-height: 1.5em; }
@@ -13,37 +14,68 @@ ul {
   margin: 0;
   padding: 0; }
 
-button {
-  font-family: "PT Mono", monospace;
-  margin: 10px 0;
-  padding: 10px;
-  border: 1px solid;
-  font-size: 1.1em; }
-
+button:hover {
+  cursor: pointer; }
 button.ctaButton {
+  font-family: "PT Mono", monospace;
   background-color: #ff524d;
   font-weight: bold;
   border: 0;
   color: white;
   font-size: 15px;
   padding: 15px; }
+  button.ctaButton:disabled {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.5);
+    cursor: default; }
+button.interfaceButton {
+  transition: opacity .1s;
+  background-color: transparent;
+  color: white;
+  font-family: "PT Mono", monospace;
+  border: 0;
+  font-size: 14px;
+  margin: 0 10px; }
+  button.interfaceButton:hover {
+    opacity: 0.6; }
+  button.interfaceButton:disabled {
+    opacity: 0.5;
+    cursor: default; }
+
+.interfaceContainer {
+  width: 100%;
+  margin: 30px 0;
+  display: flex;
+  justify-content: center; }
+  .interfaceContainer.right {
+    justify-content: flex-end; }
+  .interfaceContainer.noMargin {
+    margin: 0; }
+
+.textContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center; }
 
 nav {
   margin-bottom: 40px;
   margin: 100 0px; }
   nav ul {
-    box-sizing: border-box;
+    padding: 0 50px;
     padding-top: 40px;
-    padding-left: 50px;
-    padding-right: 50px;
     display: flex;
-    max-width: 1275px;
+    max-width: 1200px;
     margin: 0 auto; }
+  nav ul li {
+    margin: 0 10px; }
+    nav ul li:first-child {
+      margin-left: 0; }
+    nav ul li:last-child {
+      margin-right: 0; }
   nav ul li a {
     text-decoration: none;
     padding-bottom: 5px;
-    margin: 0 10px;
-    color: #0060ff;
+    color: white;
     font-size: 14px; }
   nav ul li a.current {
     border-bottom: 1px solid; }
@@ -56,8 +88,8 @@ nav ul .homeButton {
   flex-grow: 1; }
 
 .submissions {
-  margin: 50px auto;
-  max-width: 1200px; }
+  max-width: 1200px;
+  margin: 0 auto; }
 
 .selected-cards span {
   display: block;
@@ -75,66 +107,103 @@ header > div {
   max-width: 450px;
   text-align: center; }
 
+/* GAME */
+.game {
+  max-width: 1200px;
+  padding: 0 50px;
+  margin: 0 auto;
+  perspective: 800px; }
+  .game .flow {
+    max-width: 740px;
+    margin: 0 auto; }
+    .game .flow ul {
+      display: flex; }
+      .game .flow ul button {
+        flex-grow: 1; }
+        .game .flow ul button span {
+          color: #0060ff;
+          box-sizing: border-box;
+          width: 30px;
+          font-size: 16px;
+          border-radius: 20px;
+          padding: 8px;
+          background-color: #ebff61; }
+
 .card {
-  width: 100%;
-  background-color: yellow;
-  padding: 30px;
   box-sizing: border-box;
+  background-color: white;
+  border: none;
   text-align: left;
-  vertical-align: top;
   flex-grow: 2;
-  font-size: .8em;
-  display: flex;
-  flex-direction: column; }
-
-.card p {
+  font-size: 1.5em;
+  height: 100%;
   width: 100%;
-  margin: 8px 0; }
-
-.card .cat {
-  font-weight: normal;
-  width: 100%;
-  font-size: 12px;
-  align-self: flex-start; }
-
-.card.user {
-  font-weight: bold;
-  background-color: white;
-  border: 2px dashed #ff524d;
-  color: #ff524d;
-  font-size: 2em; }
-
-.card.scenario {
-  font-weight: bold;
-  background-color: white;
-  border: 2px dotted #77c36c;
-  color: #77c36c;
-  font-size: 1.5em; }
-
-.card.technology {
-  background-color: white;
-  border: 2px solid #b754a1;
-  color: #b754a1;
-  font-size: 1em; }
-
-.card.technology .name {
-  font-weight: bold; }
-
-.card.technology .examples {
-  align-self: flex-end; }
-
-.card.technology .source {
-  font-size: .5em;
-  align-self: flex-end; }
+  padding: 0;
+  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.1);
+  transform-style: preserve-3d;
+  transition: transform .3s; }
+  .card:hover {
+    transform: rotateY(2deg); }
+  .card .cardText {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+  .card p {
+    width: 100%;
+    margin: 8px 0; }
+  .card .cat {
+    font-weight: normal;
+    width: 100%;
+    font-size: 12px;
+    align-self: flex-start; }
+  .card .cardInner {
+    box-sizing: border-box;
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    margin: 15px;
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    vertical-align: top;
+    padding: 15px; }
+  .card.user {
+    font-weight: bold;
+    color: #ff524d; }
+    .card.user .cardInner {
+      border: 1px dashed #ff524d; }
+  .card.scenario {
+    font-weight: bold;
+    color: #77c36c; }
+    .card.scenario .cardInner {
+      border: 1px dotted #77c36c; }
+  .card.technology {
+    color: #b754a1; }
+    .card.technology:hover {
+      font-size: 1em; }
+    .card.technology .name {
+      font-size: 1em;
+      font-weight: bold; }
+    .card.technology .examples {
+      font-size: 1em;
+      align-self: flex-end;
+      margin: 0em; }
+    .card.technology .source {
+      font-size: .5em;
+      align-self: flex-end; }
+    .card.technology .cardInner {
+      border: 1px solid #b754a1; }
 
 .category {
   display: flex;
   flex-wrap: wrap; }
 
+.postContainer {
+  margin: 200px 0; }
+
 .post {
   display: flex;
   width: 100%;
-  margin: 50px 0;
   height: 600px; }
 
 .selected-cards {
@@ -146,6 +215,7 @@ header > div {
   position: relative; }
 
 .postCard {
+  color: black;
   position: absolute;
   box-sizing: border-box;
   font-size: 20px;
@@ -181,15 +251,15 @@ header > div {
 
 .roulette {
   display: flex;
-  min-height: 100px;
-  width: 100%; }
+  min-height: 300px;
+  width: 100%;
+  margin: 30px 0; }
 
 .roulette-child {
-  display: flex;
-  flex-direction: column;
-  width: calc(33% - 20px);
-  margin-top: 10px;
-  margin-right: 20px; }
+  width: 33%;
+  margin-left: 30px; }
+  .roulette-child:first-child {
+    margin: 0px; }
 
 .submissionfield {
   margin: 50px 0; }

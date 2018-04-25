@@ -54,8 +54,6 @@ class Game extends Component {
       }
     });
 
-    console.log(tempCards);
-
     this.props.selectedHandler({
       clickedCard:e,
       selectedCards: tempCards
@@ -82,7 +80,12 @@ class Game extends Component {
         {this.state.step === 2 &&
           <div>
             <Roulette clickHandler={this.cardClick} selectedCards={this.props.selectedCards} />
-            <button className="roulette-button" onClick={this.handleClick}>Randomise Cards</button>
+            <div className="interfaceContainer">
+              <button className="interfaceButton" onClick={this.handleClick}>Randomise Cards</button>
+            </div>
+            <div className="interfaceContainer right">
+              <button className="ctaButton" disabled={true}>Continue to next step →</button>
+            </div>
           </div>
         }
         {this.state.step === 3 &&

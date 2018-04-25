@@ -1,7 +1,10 @@
+.postContainer{
+  margin: 200px 0;
+}
+
 .post{
   display: flex;
   width: 100%;
-  margin: 50px 0;
   height: 600px;
 }
 
@@ -15,6 +18,7 @@
 }
 
 .postCard{
+  color: $text-card-color;
   position: absolute;
   box-sizing: border-box;
   font-size: 20px;
