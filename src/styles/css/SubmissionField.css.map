@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,gBAAgB;EACd,MAAM,EAAE,MAAM;;AAGhB,YAAY;EACV,OAAO,EAAE,KAAK;EACd,KAAK,EAAE,GAAG;EACV,MAAM,EAAE,KAAK;EACb,SAAS,EAAE,IAAI;EACf,aAAa,EAAE,IAAI;;AAGrB,cAAc;EACZ,OAAO,EAAE,KAAK",
+"sources": ["../scss/SubmissionField.scss"],
+"names": [],
+"file": "SubmissionField.css"
+}

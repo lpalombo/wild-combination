@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './Roulette.css';
 import Card from './Card';
 
 class Roulette extends Component {

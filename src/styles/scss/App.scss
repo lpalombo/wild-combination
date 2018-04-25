@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Mono');
+
+$fonts-body: Helvetica, sans-serif;
+$fonts-links: 'PT Mono', monospace;
+
+$nav-color: #0060ff;
+$bg-color: lightgray;
+$button-color: #ff524d;
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $fonts-body;
+  background-color: $bg-color;
+}
+
+p{
+  line-height: 1.5em;
+}
+
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+button{
+  font-family: $fonts-links;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid;
+  font-size: 1.1em;
+}
+
+button.ctaButton{
+  background-color: $button-color;
+  font-weight: bold;
+  border: 0;
+  color: white;
+  font-size: 15px;
+  padding: 15px;
+}
+
+nav{
+  margin-bottom: 40px;
+  margin: 100 0px;
+
+  ul{
+    box-sizing: border-box;
+    padding-top: 40px;
+    padding-left: 50px;
+    padding-right: 50px;
+    display: flex;
+    max-width: 1275px;
+    margin: 0 auto;
+  }
+  ul li a{
+    text-decoration: none;
+    padding-bottom: 5px;
+    margin: 0 10px;
+    color: $nav-color;
+    font-size: 14px;
+  }
+
+  ul li a.current{
+    border-bottom: 1px solid;
+  }
+}
+
+.homeButton a{
+  border-bottom: none;
+  font-size: 16px;
+}
+nav ul .homeButton{
+  flex-grow: 1;
+}
+
+.submissions{
+  margin: 50px auto;
+  max-width: 1200px;
+}
+
+
+
+.selected-cards span{
+  display: block;
+  margin: 10px 0;
+}
+
+
+/* HEADER */
+
+header{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -80px;
+}
+
+header > div{
+  max-width: 450px;
+  text-align: center;
+}

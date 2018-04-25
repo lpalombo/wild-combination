@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAGA,SAAS;EACP,OAAO,EAAE,IAAI;EACb,SAAS,EAAE,IAAI",
+"sources": ["../scss/Category.scss"],
+"names": [],
+"file": "Category.css"
+}

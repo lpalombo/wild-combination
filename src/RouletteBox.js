@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Category.css';
+
 import Card from './Card';
 
 class RouletteBox extends Component {

@@ -1,0 +1,53 @@
+.card {
+  width: 100%;
+  background-color: yellow;
+  padding: 30px;
+  box-sizing: border-box;
+  text-align: left;
+  vertical-align: top;
+  flex-grow: 2;
+  font-size: .8em;
+  display: flex;
+  flex-direction: column; }
+
+.card p {
+  width: 100%;
+  margin: 8px 0; }
+
+.card .cat {
+  font-weight: normal;
+  width: 100%;
+  font-size: 12px;
+  align-self: flex-start; }
+
+.card.user {
+  font-weight: bold;
+  background-color: white;
+  border: 2px dashed #ff524d;
+  color: #ff524d;
+  font-size: 2em; }
+
+.card.scenario {
+  font-weight: bold;
+  background-color: white;
+  border: 2px dotted #77c36c;
+  color: #77c36c;
+  font-size: 1.5em; }
+
+.card.technology {
+  background-color: white;
+  border: 2px solid #b754a1;
+  color: #b754a1;
+  font-size: 1em; }
+
+.card.technology .name {
+  font-weight: bold; }
+
+.card.technology .examples {
+  align-self: flex-end; }
+
+.card.technology .source {
+  font-size: .5em;
+  align-self: flex-end; }
+
+/*# sourceMappingURL=Card.css.map */

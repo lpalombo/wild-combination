@@ -19,11 +19,11 @@
   box-sizing: border-box;
   font-size: 20px;
   background-color: white;
-  border: 1px solid;
   min-height: 200px;
   width: 33%;
   padding: 20px;
   padding-bottom: 40px;
+  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
 /* .postCard:not(:first-child) {

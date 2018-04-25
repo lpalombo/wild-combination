@@ -6,7 +6,6 @@ import {
   NavLink
 } from 'react-router-dom'
 
-import './App.css';
 //import GetSheetDone from 'get-sheet-done';
 import firebase from './firebase.js';
 import Home from './Home';

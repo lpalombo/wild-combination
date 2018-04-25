@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import './SubmissionField.css';
-//import Card from './Card';
 
 class SubmissionField extends Component {
 

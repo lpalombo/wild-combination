@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Post from './Post';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { Link } from "react-router-dom";
 import firebase from './firebase.js';
 
 class Home extends Component {
@@ -47,6 +48,7 @@ class Home extends Component {
           <div>
             <h1>Create the spark for the idea that changes the world.</h1>
             <p>Wild Combination is a rapid ideation card game where participants apply technologies to real-life scenarios to create novel solutions for people.</p>
+            <Link to="/play"><button className="ctaButton">Play the Game</button></Link>
           </div>
         </header>
         <div className="submissions">
