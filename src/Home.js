@@ -58,6 +58,7 @@ class Home extends Component {
             hasMore={(this.state.count <= this.state.submissions.length)}
             loader={<h4>Loading...</h4>}
             refreshFunction={this.refresh}
+            style={{overflow:'visible'}}
             endMessage={
               <p style={{textAlign: 'center'}}>
                 <b>Yay! You have seen it all</b>

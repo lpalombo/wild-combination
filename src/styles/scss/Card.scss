@@ -45,16 +45,16 @@
 
   &.user{
     font-weight: bold;
-    color: rgba(255,82,77,1);
-    .cardInner{border: 1px dashed rgba(255,82,77,1);}
+    color: $color-user;
+    .cardInner{border: 1px dashed $color-user;}
   }
   &.scenario{
     font-weight: bold;
-    color: #77c36c;
-    .cardInner{border: 1px dotted #77c36c;}
+    color: $color-scenario;
+    .cardInner{border: 1px dotted $color-scenario;}
   }
   &.technology{
-    color:#b754a1;
+    color:$color-technology;
     &:hover{
       font-size: 1em;
     }
@@ -64,7 +64,7 @@
       font-size: .5em;
       align-self: flex-end;
     }
-    .cardInner{border: 1px solid #b754a1;}
+    .cardInner{border: 1px solid $color-technology;}
   }
 
 }

@@ -114,20 +114,30 @@ header > div {
   margin: 0 auto;
   perspective: 800px; }
   .game .flow {
-    max-width: 740px;
+    max-width: 800px;
     margin: 0 auto; }
     .game .flow ul {
       display: flex; }
-      .game .flow ul button {
-        flex-grow: 1; }
-        .game .flow ul button span {
-          color: #0060ff;
-          box-sizing: border-box;
-          width: 30px;
-          font-size: 16px;
-          border-radius: 20px;
-          padding: 8px;
-          background-color: #ebff61; }
+      .game .flow ul li {
+        flex-grow: 1;
+        font-size: .85em;
+        margin: 0 20px; }
+        .game .flow ul li span {
+          color: white;
+          line-height: 1.5em;
+          padding: 5px;
+          height: 20px;
+          width: 20px;
+          text-align: center;
+          background-color: #bbb;
+          border-radius: 50%;
+          display: inline-block;
+          position: relative;
+          background-color: #004ed0;
+          margin-right: 10px; }
+          .game .flow ul li span.active {
+            color: #0060ff;
+            background-color: #ebff61; }
 
 .card {
   box-sizing: border-box;
@@ -199,12 +209,14 @@ header > div {
   flex-wrap: wrap; }
 
 .postContainer {
-  margin: 200px 0; }
+  margin: 250px 0;
+  overflow: visible; }
 
 .post {
   display: flex;
   width: 100%;
-  height: 600px; }
+  height: 400px;
+  overflow: visible; }
 
 .selected-cards {
   width: 50%;
@@ -212,7 +224,14 @@ header > div {
 
 .inputted {
   width: 50%;
-  position: relative; }
+  position: relative;
+  order: 2; }
+
+.rotate__wrapper {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  perspective: 1000; }
 
 .postCard {
   color: black;
@@ -220,34 +239,53 @@ header > div {
   box-sizing: border-box;
   font-size: 20px;
   background-color: white;
-  min-height: 200px;
-  width: 33%;
-  padding: 20px;
-  padding-bottom: 40px;
+  width: 40%;
+  padding-bottom: 30%;
   box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.1); }
+  .postCard .postCardInner {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid;
+    padding: 15px; }
+  .postCard .postSpan {
+    font-size: 12px; }
+  .postCard.a1-user {
+    color: #ff524d;
+    top: 0px;
+    left: 0px; }
+    .postCard.a1-user .postCardInner {
+      border: 1.2px dashed; }
+  .postCard.a2-scenario {
+    color: #77c36c;
+    font-size: 16px;
+    top: 30%;
+    left: 30%; }
+    .postCard.a2-scenario .postCardInner {
+      border: 1.2px dotted; }
+  .postCard.a3-technology {
+    color: #b754a1;
+    top: 60%;
+    left: 60%; }
+    .postCard.a3-technology .postCardInner {
+      border: 1.2px solid; }
 
-/* .postCard:not(:first-child) {
-  margin-top: -50px;
-  margin-left: 30px;
-} */
-.postCard.a1-user {
-  top: 0px;
-  left: 0px; }
-
-.postCard.a2-scenario {
-  top: 30%;
-  left: 30%; }
-
-.postCard.a3-technology {
-  top: 60%;
-  left: 60%; }
-
-.postSpan {
-  font-size: 14px; }
-
-.postCard.input {
+.input {
+  box-sizing: border-box;
+  color: black;
   width: 100%;
-  height: 340px; }
+  height: 340px;
+  background-color: white;
+  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  font-size: 18px;
+  line-height: 1.56; }
+  .input p {
+    font-size: 14px;
+    color: #9b9b9b;
+    margin-top: 0; }
 
 .roulette {
   display: flex;

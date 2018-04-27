@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Roulette from './Roulette';
 import SubmissionField from './SubmissionField';
+import { Redirect } from 'react-router-dom'
 
 class Game extends Component {
   constructor(props){
@@ -11,6 +12,8 @@ class Game extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.setStep = this.setStep.bind(this);
     this.cardClick = this.cardClick.bind(this);
+    this.nextStep = this.nextStep.bind(this);
+    this.getDisabledClass = this.getDisabledClass.bind(this);
   }
 
   randomCard(category){
@@ -44,6 +47,17 @@ class Game extends Component {
     });
   }
 
+  nextStep() {
+    let val;
+    if(this.state.step !== 4){
+      val = 1 + this.state.step;
+    } else {
+
+    }
+    this.setState({
+      step: val
+    });
+  }
 
   cardClick(e){
     let tempCards = this.props.selectedCards.map((card, index) => {
@@ -60,21 +74,28 @@ class Game extends Component {
     });
   }
 
+  getDisabledClass(num){
+    return ((num === this.state.step) ? "active" : "");
+  }
+
   render() {
     return (
       <div className="game">
         <div className="flow">
           <ul>
-            <button onClick={() => {this.setStep(1)}} ><li><span>1</span>Choose a Deck</li></button>
-            <button onClick={() => {this.setStep(2)}} ><li><span>2</span>Create a Combo</li></button>
-            <button onClick={() => {this.setStep(3)}} ><li><span>3</span>Write a Response</li></button>
-            <button onClick={() => {this.setStep(4)}} ><li><span>4</span>Review and Submit</li></button>
+            <li><span className={this.getDisabledClass(1)}>1</span>Choose a Deck</li>
+            <li><span className={this.getDisabledClass(2)}>2</span>Create a Combo</li>
+            <li><span className={this.getDisabledClass(3)}>3</span>Write a Response</li>
+            <li><span className={this.getDisabledClass(4)}>4</span>Review and Submit</li>
           </ul>
         </div>
 
         {this.state.step === 1 &&
           <div>
             <h1>Category placeholder</h1>
+            <div className="interfaceContainer right">
+              <button className="ctaButton" onClick={this.nextStep}>Continue to next step →</button>
+            </div>
           </div>
         }
         {this.state.step === 2 &&
@@ -84,18 +105,24 @@ class Game extends Component {
               <button className="interfaceButton" onClick={this.handleClick}>Randomise Cards</button>
             </div>
             <div className="interfaceContainer right">
-              <button className="ctaButton" disabled={true}>Continue to next step →</button>
+              <button className="ctaButton" onClick={this.nextStep}>Continue to next step →</button>
             </div>
           </div>
         }
         {this.state.step === 3 &&
           <div>
             <SubmissionField submitHandler={this.props.submitHandler}/>
+            <div className="interfaceContainer right">
+              <button className="ctaButton" onClick={this.nextStep}>Continue to next step →</button>
+            </div>
           </div>
         }
         {this.state.step === 4 &&
           <div>
             <h1>Review placeholder</h1>
+            <div className="interfaceContainer right">
+              <button className="ctaButton" onClick={this.nextStep}>Continue to next step →</button>
+            </div>
           </div>
         }
       </div>

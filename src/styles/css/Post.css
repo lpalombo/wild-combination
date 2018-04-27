@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$text-card-color".
-        on line 21 of src/styles/scss/Post.scss
+        on line 31 of src/styles/scss/Post.scss
 
-16:   width: 50%;
-17:   position: relative;
-18: }
-19: 
-20: .postCard{
-21:   color: $text-card-color;
-22:   position: absolute;
-23:   box-sizing: border-box;
-24:   font-size: 20px;
-25:   background-color: white;
-26:   min-height: 200px;
+26:     transform-style: preserve-3d;
+27:     perspective: 1000;
+28: }
+29: 
+30: .postCard{
+31:   color: $text-card-color;
+32:   position: absolute;
+33:   box-sizing: border-box;
+34:   font-size: 20px;
+35:   background-color: white;
+36:   width: 40%;
 
 Backtrace:
-src/styles/scss/Post.scss:21
+src/styles/scss/Post.scss:31
 /Library/Ruby/Gems/2.0.0/gems/sass-3.5.6/lib/sass/script/tree/variable.rb:49:in `_perform'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.5.6/lib/sass/script/tree/node.rb:50:in `perform'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.5.6/lib/sass/tree/visitors/perform.rb:402:in `visit_prop'
@@ -71,4 +71,4 @@ src/styles/scss/Post.scss:21
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$text-card-color\".\A         on line 21 of src/styles/scss/Post.scss\A \A 16:   width: 50%;\A 17:   position: relative;\A 18: }\A 19: \A 20: .postCard{\A 21:   color: $text-card-color;\A 22:   position: absolute;\A 23:   box-sizing: border-box;\A 24:   font-size: 20px;\A 25:   background-color: white;\A 26:   min-height: 200px;"; }
+  content: "Error: Undefined variable: \"$text-card-color\".\A         on line 31 of src/styles/scss/Post.scss\A \A 26:     transform-style: preserve-3d;\A 27:     perspective: 1000;\A 28: }\A 29: \A 30: .postCard{\A 31:   color: $text-card-color;\A 32:   position: absolute;\A 33:   box-sizing: border-box;\A 34:   font-size: 20px;\A 35:   background-color: white;\A 36:   width: 40%;"; }

@@ -114,19 +114,29 @@ header > div {
   margin: 0 auto;
   perspective: 800px; }
   .game .flow {
-    max-width: 740px;
+    max-width: 800px;
     margin: 0 auto; }
     .game .flow ul {
       display: flex; }
-      .game .flow ul button {
-        flex-grow: 1; }
-        .game .flow ul button span {
-          color: #0060ff;
-          box-sizing: border-box;
-          width: 30px;
-          font-size: 16px;
-          border-radius: 20px;
-          padding: 8px;
-          background-color: #ebff61; }
+      .game .flow ul li {
+        flex-grow: 1;
+        font-size: .85em;
+        margin: 0 20px; }
+        .game .flow ul li span {
+          color: white;
+          line-height: 1.5em;
+          padding: 5px;
+          height: 20px;
+          width: 20px;
+          text-align: center;
+          background-color: #bbb;
+          border-radius: 50%;
+          display: inline-block;
+          position: relative;
+          background-color: #004ed0;
+          margin-right: 10px; }
+          .game .flow ul li span.active {
+            color: #0060ff;
+            background-color: #ebff61; }
 
 /*# sourceMappingURL=App.css.map */

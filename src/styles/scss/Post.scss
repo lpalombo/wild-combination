@@ -1,11 +1,13 @@
 .postContainer{
-  margin: 200px 0;
+  margin: 250px 0;
+  overflow: visible;
 }
 
 .post{
   display: flex;
   width: 100%;
-  height: 600px;
+  height: 400px;
+  overflow: visible;
 }
 
 .selected-cards{
@@ -15,6 +17,14 @@
 .inputted{
   width: 50%;
   position: relative;
+  order: 2;
+}
+
+.rotate__wrapper {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    perspective: 1000;
 }
 
 .postCard{
@@ -23,36 +33,51 @@
   box-sizing: border-box;
   font-size: 20px;
   background-color: white;
-  min-height: 200px;
-  width: 33%;
-  padding: 20px;
-  padding-bottom: 40px;
+  width: 40%;
+  padding-bottom: 30%;
   box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.1);
+  .postCardInner{
+    position: absolute;
+    top: 10px; left: 10px; right: 10px; bottom: 10px;
+    border: 1px solid;
+    padding: 15px;
+  }
+  .postSpan{
+    font-size: 12px;
+  }
+  &.a1-user{
+    color: $color-user;
+    top: 0px;
+    left: 0px;
+    .postCardInner{border: 1.2px dashed}
+  }
+  &.a2-scenario{
+    color: $color-scenario;
+    font-size: 16px;
+    top: 30%;
+    left: 30%;
+    .postCardInner{border: 1.2px dotted}
+  }
+  &.a3-technology{
+    color: $color-technology;
+    top: 60%;
+    left: 60%;
+    .postCardInner{border: 1.2px solid}
+  }
 }
-
-/* .postCard:not(:first-child) {
-  margin-top: -50px;
-  margin-left: 30px;
-} */
-
-.postCard.a1-user{
-  top: 0px;
-  left: 0px;
-}
-.postCard.a2-scenario{
-  top: 30%;
-  left: 30%;
-}
-.postCard.a3-technology{
-  top: 60%;
-  left: 60%;
-}
-
-.postSpan{
-  font-size: 14px;
-}
-
-.postCard.input{
+.input{
+  box-sizing: border-box;
+  color: black;
   width: 100%;
   height: 340px;
+  background-color: white;
+  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  font-size: 18px;
+  line-height: 1.56;
+  p{
+    font-size: 14px;
+    color: #9b9b9b;
+    margin-top: 0;
+  }
 }
