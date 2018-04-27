@@ -209,7 +209,7 @@ header > div {
   flex-wrap: wrap; }
 
 .postContainer {
-  margin: 250px 0;
+  margin: 200px auto;
   overflow: visible; }
 
 .post {
@@ -262,13 +262,13 @@ header > div {
     color: #77c36c;
     font-size: 16px;
     top: 30%;
-    left: 30%; }
+    left: 28%; }
     .postCard.a2-scenario .postCardInner {
       border: 1.2px dotted; }
   .postCard.a3-technology {
     color: #b754a1;
     top: 60%;
-    left: 60%; }
+    left: 62%; }
     .postCard.a3-technology .postCardInner {
       border: 1.2px solid; }
 
